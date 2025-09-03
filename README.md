@@ -1,1 +1,1 @@
-This repository contains some examples of network hardening, e.g. a simple netfilter based bash skript to achieve manual & high-interaction DDoS blocking.
+This repository contains some examples of network hardening, e.g. a simple netfilter based bash skript to achieve manual & high-interaction DDoS blocking, or a minimal netfilter ruleset to achieve stateful packet inspection (SPI) on a given linux system.

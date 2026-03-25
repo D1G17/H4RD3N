@@ -15,8 +15,7 @@ iptables -I INPUT -m state --state related,established -j ACCEPT
 iptables -I INPUT -p tcp --dport 22 -j ACCEPT
 for i in tun+ tap+ wg+ lo; do iptables -I INPUT -i $i -j ACCEPT; done
 iptables -A INPUT -j LOG --log-prefix `hostname`-INPUT
-iptables -A INPUT -P DROP
 iptables -I FORWARD -m state --state related,established -j ACCEPT
 iptables -A FORWARD -j LOG --log-prefix `hostname`-INPUT
-iptables -A FORWARD -P DROP
+for i in INPUT FORWARD; do iptables -P $i DROP ; done
 exit 0

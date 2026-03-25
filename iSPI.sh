@@ -11,6 +11,7 @@
 # * Log packets that do not match previous INPUT and FORWARD rules
 # * Block packets that do not match previous rules by implementing DROP policy
 #
+echo "Imlementing SPI ruleset..."
 iptables -I INPUT -m state --state related,established -j ACCEPT
 iptables -I INPUT -p tcp --dport 22 -j ACCEPT
 for i in tun+ tap+ wg+ lo; do iptables -I INPUT -i $i -j ACCEPT; done
@@ -18,4 +19,5 @@ iptables -A INPUT -j LOG --log-prefix `hostname`-INPUT
 iptables -I FORWARD -m state --state related,established -j ACCEPT
 iptables -A FORWARD -j LOG --log-prefix `hostname`-INPUT
 for i in INPUT FORWARD; do iptables -P $i DROP ; done
+echo "Implemented SPI rules OK+"
 exit 0
